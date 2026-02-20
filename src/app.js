@@ -3,6 +3,8 @@ const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 
+const authRoutes = require("./routes/authRoutes");
+
 const app = express();
 
 app.use(helmet());
@@ -19,5 +21,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("HireHub Backend Running 🚀");
 });
+
+app.use("/api/auth", authRoutes);
 
 module.exports = app;
