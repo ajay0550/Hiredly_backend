@@ -69,7 +69,7 @@ exports.getApplicationsForJob = async (jobId, recruiterId) => {
   const applications = await Application.find({ job: jobId })
     .populate({
       path: "applicant",
-      select: "name email",
+      select: "name email resume",
     })
     .sort({ createdAt: -1 });
 

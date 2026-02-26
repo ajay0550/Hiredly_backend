@@ -16,9 +16,10 @@ app.use(helmet());
 app.use(cors());
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 1000,              // allow many requests in dev
 });
+
 app.use(limiter);
 
 app.use(express.json());

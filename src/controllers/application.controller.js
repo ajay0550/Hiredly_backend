@@ -1,6 +1,8 @@
 const applicationService = require("../services/application.service");
 
-
+// ==============================
+// APPLY TO JOB
+// ==============================
 exports.applyToJobController = async (req, res, next) => {
   try {
     const application = await applicationService.applyToJob(
@@ -18,6 +20,9 @@ exports.applyToJobController = async (req, res, next) => {
   }
 };
 
+// ==============================
+// GET MY APPLICATIONS
+// ==============================
 exports.getMyApplicationsController = async (req, res, next) => {
   try {
     const applications = await applicationService.getMyApplications(
@@ -34,6 +39,9 @@ exports.getMyApplicationsController = async (req, res, next) => {
   }
 };
 
+// ==============================
+// GET APPLICATIONS FOR JOB
+// ==============================
 exports.getApplicationsForJobController = async (req, res, next) => {
   try {
     const applications = await applicationService.getApplicationsForJob(
@@ -51,6 +59,9 @@ exports.getApplicationsForJobController = async (req, res, next) => {
   }
 };
 
+// ==============================
+// UPDATE APPLICATION STATUS
+// ==============================
 exports.updateApplicationStatusController = async (req, res, next) => {
   try {
     const application = await applicationService.updateApplicationStatus(

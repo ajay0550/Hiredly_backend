@@ -1,44 +1,47 @@
 const express = require("express");
-const {
-  applyToJobController,
-  getMyApplicationsController,
-  getApplicationsForJobController,
-  updateApplicationStatusController,
-} = require("../controllers/application.controller");
-
-const { protect, authorizeRoles } = require("../middlewares/authMiddleware");
-
 const router = express.Router();
 
+const applicationController = require("../controllers/application.controller");
+const { protect, authorizeRoles } = require("../middlewares/authMiddleware");
+
+// ==============================
+// Applicant: Get My Applications
+// ==============================
 router.get(
   "/my-applications",
   protect,
   authorizeRoles("applicant"),
-  getMyApplicationsController
+  applicationController.getMyApplicationsController
 );
 
-router.patch(
-  "/:id/status",
-  protect,
-  authorizeRoles("recruiter"),
-  updateApplicationStatusController
-);
-
+// ==============================
+// Recruiter: Get Applications For Job
+// ==============================
 router.get(
   "/job/:jobId",
   protect,
   authorizeRoles("recruiter"),
-  getApplicationsForJobController
+  applicationController.getApplicationsForJobController
 );
 
-// Applicant applies to a job
+// ==============================
+// Recruiter: Update Application Status
+// ==============================
+router.patch(
+  "/:id/status",
+  protect,
+  authorizeRoles("recruiter"),
+  applicationController.updateApplicationStatusController
+);
+
+// ==============================
+// Applicant: Apply To Job
+// ==============================
 router.post(
   "/:jobId",
   protect,
   authorizeRoles("applicant"),
-  applyToJobController
+  applicationController.applyToJobController
 );
-
-
 
 module.exports = router;
