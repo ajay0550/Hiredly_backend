@@ -22,7 +22,7 @@ app.use(rateLimit({
   max: 100,
 }));
 
-app.use(limiter);
+
 
 app.use(express.json());
 
