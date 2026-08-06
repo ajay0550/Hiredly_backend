@@ -9,7 +9,7 @@ router.get("/profile", protect, (req, res) => {
     res.json(req.user);
 });
 
-// Admin-only test route
+
 router.get(
     "/admin-test",
     protect,
